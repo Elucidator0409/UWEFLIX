@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block banner %}
+<div class="hero common-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hero-ct">
+					<h1> movie listing - list</h1>
+					<ul class="breadcumb">
+						<li class="active"><a href="#">Home</a></li>
+						<li> <span class="ion-ios-arrow-right"></span> movie listing</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+
+{% block content %}
+	
+	<div class="container">
+		<div class="row">
+		<h3	>UWEFlix </h3>
+		<br><br>
+		<div class="row">				
+		<h1>Reserve Seats</h1>
+		<br>
+		<div class="row">
+		<h2>{{ show_info }}</h2>
+		<div class="seatDiv">
+			<div class="seatArray">
+			</div>
+			<div class="seatForm">
+				<form method="post" action="">
+					{% csrf_token %}
+					{{ form|crispy }}
+
+			
+					<input type="hidden" name="show_id" id="show_id" value="{{ show_info.id }}" readonly />
+					<button type="submit">Confirm</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>	
+		
+	</div>
+
+	
+
+{% endblock %}

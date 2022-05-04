@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block banner %}
+<div class="hero common-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hero-ct">
+					<h1> movie listing - list</h1>
+					<ul class="breadcumb">
+						<li class="active"><a href="#">Home</a></li>
+						<li> <span class="ion-ios-arrow-right"></span> movie listing</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block title %}
+    <title>UWEFlix | Movie Details</title>
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="page-single movie_list">
+	<div class="container">
+		<div class="row ipad-width2">
+			<div class="col-md-8 col-sm-12 col-xs-12">
+				<div class="topbar-filter">
+					<p>Found <span>1,608 movies</span> in total</p>
+					<label>Sort by:</label>
+					<select>
+						<option value="popularity">Popularity Descending</option>
+						<option value="popularity">Popularity Ascending</option>
+						<option value="rating">Rating Descending</option>
+						<option value="rating">Rating Ascending</option>
+						<option value="date">Release date Descending</option>
+						<option value="date">Release date Ascending</option>
+					</select>
+					<a  class="list"><i class="ion-ios-list-outline active"></i></a>
+					<a   class="grid"><i class="ion-grid"></i></a>
+				</div>
+				
+				
+				<div class="movie-item-style-2">
+					<img src="{{ MEDIA_URL }}/media/{{ movie_info.image }}" alt="">
+					<div class="mv-item-infor">
+						
+						
+						<h6><a  >{{ movie_info.name }}</a></h6>
+						<span>Year: <b>{{ movie_info.year }}</b></span>
+						<p class="rate"><i class="ion-android-star"></i><span>{{ movie_info.imdbRating }}</span> /10</p>
+						<p class="describe">{{ movie_info.plot }}</p>
+						<p class="run-time"> {{ movie_info.run_length }}   .     <span>{{ movie_info.rated }} </span>.</p>
+						<p>Director: <a href="#">{{ movie_info.director }}</a></p>
+						<p>Stars: <a href="#">{{ movie_info.cast }}</a> </p>
+					
+					</div>
+					
+				</div>
+
+        <div class="movie-item-style-2">
+          <iframe id="video1" width="450" height="280" src="{{ movie_info.trailer }}" frameborder="0" allowtransparency="true" allowfullscreen></iframe>
+          
+          <script>
+          $("#playvideo").click(function(){
+            $("#video1")[0].src += "?autoplay=1";
+          });
+          </script>
+          
+          <div class="mv-item-infor">
+            
+            <h3 style="text-align:right;" >Now Showing</h3>
+            
+            <h6 style="text-align:right;"><a  >{{ movie_info.name }}</a></h6>
+            <p style="text-align:right;" class="run-time"> {{ movie_info.run_length }}   .     <span style="text-align:right;">{{ movie_info.rated }} </span>.</p>
+            <h4 style="text-align:right;" ><a href="{% url 'home' %}">UWE FLIX </a></h4>
+            {% for theatre in show_list %}
+            <ul>
+            {% for showtime in theatre %}
+              <li style="text-align:center;"><a  href="{% url 'reserve_seat' showtime.id  %}">{{ showtime.time|time:"h:i A" }}</a></li>
+              
+                
+            {% endfor %}
+            </ul>
+            {% endfor %}
+          
+          </div>
+				
+				
+			</div>
+		
+				
+					
+				
+					
+				</div>
+			</div>
+		</div>
+    
+    
+            
+           
+            
+     
+    </div>
+	</div>
+</div>
+
+
+
+{% endblock %}
