@@ -23,32 +23,25 @@
 
 {% block content %}
 	
-	<div class="container">
-		<div class="row">
-		<h3	>UWEFlix </h3>
-		<br><br>
-		<div class="row">				
+	<div class="movie-item-style-2">
+		<h3	>UWEFlix | Reserve Seats</h3>				
 		<h1>Reserve Seats</h1>
-		<br>
-		<div class="row">
 		<h2>{{ show_info }}</h2>
 		<div class="seatDiv">
 			<div class="seatArray">
 			</div>
 			<div class="seatForm">
-				<form method="post" action="">
+				<form method="post" action="{% url 'payment_gateway' %}">
 					{% csrf_token %}
-					{{ form|crispy }}
+					{{ form|crispy }} <!--This one --> 
 
-			
+			{% csrf_token %}
+			{{ form2|crispy }}
 					<input type="hidden" name="show_id" id="show_id" value="{{ show_info.id }}" readonly />
 					<button type="submit">Confirm</button>
 				</form>
 			</div>
 		</div>
-	</div>
-	</div>
-</div>	
 		
 	</div>
 

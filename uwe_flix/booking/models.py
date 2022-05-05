@@ -67,7 +67,7 @@ class Show(models.Model):
 
 class Booking(models.Model):
     payment_choice = (
-        ('Credit Card', 'Credit Card'),
+        ('Credit Card', 'Debit Card'),
     )
     id = models.CharField(primary_key=True, max_length=200)
     timestamp = models.DateTimeField('%Y-%m-%d %H:%M:%S',null=True,blank=True)
@@ -82,19 +82,12 @@ class Booking(models.Model):
 class Seat(models.Model):
     seat_choice = (
         ('', 'Select'),
-        ('1A', '1A'),
-        ('1B', '1B'),
-        ('2A', '2A'),
-        ('2B', '2B'),
-        ('3A', '3A'),
-        ('3B', '3B'),
-        ('4A', '4A'),
-        ('4B', '4B'),
-        ('5A', '5A'),
-        
+        ('Silver', 'Silver'),
+        ('Gold', 'Gold'),
+        ('Platinum', 'Platinum'),
     )
     no = models.CharField(max_length=3,null=True,blank=False)
-    seat_name = models.CharField(max_length=8, choices=seat_choice, blank=False)
+    seat_type = models.CharField(max_length=8, choices=seat_choice, blank=False)
     show = models.ForeignKey(Show, on_delete=models.CASCADE)
 
     class Meta:
@@ -102,7 +95,6 @@ class Seat(models.Model):
 
     def __str__(self):
         return self.no + str(self.show)
-
 
 
 

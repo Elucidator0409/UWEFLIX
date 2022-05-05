@@ -66,11 +66,12 @@ def reserve_seat(request, show_id):
 
     return render(request,'reserve_seat.html',context)
 
+
 @login_required(login_url='player_login')
 def payment_gateway(request):
     if request.POST:
         seats = request.POST.get('selected_seat')
-        seat_type = request.POST.get('seat_name')
+        seat_type = request.POST.get('seat_type')
         show_id = request.POST.get('show_id')
 
         show = Show.objects.get(pk=show_id)
@@ -82,7 +83,7 @@ def payment_gateway(request):
                 s = Seat.objects.get(seat_type=seat_type,no=each, show=show)
             except:
                 #redirect to seatnotfound.html
-                return redirect('home')
+                return redirect('seatnotfound.html')
 
             if Seat.objects.filter(seat_type=seat_type,no=each,show=show):
                 s = Seat(no=each,seat_type=seat_type,show=show)
@@ -90,7 +91,7 @@ def payment_gateway(request):
 
         form = BookingForm()
 
-        price_rate = 1000 #Yes.
+        price_rate = 10 #Yes.
         ticket_price = price_rate * len(book_seat)
 
         #Creating the seat string.
@@ -102,6 +103,45 @@ def payment_gateway(request):
                 seat_str += seats[i] + ','
 
         context = {'seats': seat_str,'seat_type':seat_type,'show':show,'form':form,'ticket_price':ticket_price}
-        return render(request,'booking/payment_gateway.html',context)
+        return render(request,'payment_gateway.html',context)
     else:
-        return redirect('dashboard.views.home')
+        return redirect('home')
+
+def payment_confirmation(request):
+	if request.POST:
+		
+		show_id = request.POST.get('show_id')
+		show = Show.objects.get(pk=show_id)
+		seats = request.POST.get('selected_seat')
+		seats = seats.split(',')
+		seat_type = request.POST.get('seat_type')
+		timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+		payment_type = request.POST.get('payment_type')
+		paid_amount = request.POST.get('amount')
+		paid_by = request.user
+		id = str(show) + str(seats) + timestamp
+		book = Booking(id=id, timestamp=timestamp, payment_type=payment_type,paid_amount=paid_amount, paid_by=paid_by)
+		book.save()
+        
+
+		booked_seat = []
+#removed bug of multiple booking of a seat.
+		for seat in seats:
+			print(seat)
+			s = Seat.objects.get(no=seat, show=show)
+			b = Booking.objects.get(pk=id)
+			try:
+                #if seats not already booked:
+				sc = BookedSeat.objects.get(seat=s) #Search only by seat obj
+			except:
+                #then book them:
+				booked = BookedSeat(seat=s, booking=b)
+				booked_seat.append(booked)
+			else:
+                #If already booked, then redirect.
+				return redirect('seatconflict.html')
+		BookedSeat.objects.bulk_create(booked_seat)
+		return render(request, 'payment_confirmation.html', {'paid_amount':paid_amount})
+    #else:
+        #return redirect('dashboard.views.home')
+

@@ -21,7 +21,7 @@ from django.contrib.auth.views import LoginView
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 
-from booking.views import home, show_index, movie_details,reserve_seat
+from booking.views import home, show_index, movie_details,reserve_seat,payment_gateway,payment_confirmation
 
 
 urlpatterns = [
@@ -33,9 +33,13 @@ urlpatterns = [
     re_path(r'^booking/$', show_index, name='booking'),
     re_path(r'^booking/seatchoice/(?P<show_id>\d+)/$', reserve_seat, name='reserve_seat'),
     re_path(r"login$", LoginView.as_view(template_name="signin.html"), name="player_login"),
-    re_path(r'^booking/(?P<movie_id>\d+)/$', movie_details, name='movie_details'),
     
-    #re_path(r'^booking/payment/$', payment_gateway, name='payment_gateway'),
+    re_path(r'^booking/(?P<movie_id>\d+)/$', movie_details, name='movie_details'),
+    re_path(r'^booking/payment/$', payment_gateway, name='payment_gateway'),
+    re_path(r'^booking/payment_confirmation/$', payment_confirmation, name='payment_confirmation'),
+    re_path(r'^booking/payment/seatnotfound.html$', TemplateView.as_view(template_name="seatnotfound.html"), name='seatnotfound'),
+    re_path(r'^booking/payment_confirmation/seatconflict.html$', TemplateView.as_view(template_name="seatconflict.html"), name='seatconflict'),
+    
    
 ]
 
