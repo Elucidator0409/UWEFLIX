@@ -2,19 +2,19 @@
 {% load crispy_forms_tags %}
 {% block banner %}
 <div class="hero common-hero">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="hero-ct">
-					<h1> movie listing - list</h1>
-					<ul class="breadcumb">
-						<li class="active"><a href="#">Home</a></li>
-						<li> <span class="ion-ios-arrow-right"></span> movie listing</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1> movie listing - list</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span> movie listing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
@@ -23,25 +23,25 @@
 
 {% block content %}
 
-	<h1>Booking Details</h1>
-	<div class="booking">
-		<form method="post" id='ticket_form' action="{% url 'payment_confirmation'  %}"  >
-			{% csrf_token %}
-			<input type="hidden" id="show_id" name="show_id" value="{{ show.id }}">
-			Movie:<input id="movie" name="movie" value="{{ show.movie }}" readonly>
-			Theatre:<input id="theatre" name="theatre" value="{{ show.theatre }}"  readonly>
-			Screen No:<input id="screen" name="screen" value="{{ show.screen }}"  readonly>
-			Showtime:<input id="showtime" name="showtime" value="{{ show.time }}"  readonly>
-			Date:<input id="date" name="date" value="{{ show.date }}"  readonly>
-			Seats:<input id="selected_seat" name="selected_seat" value="{{ seats }}"  readonly>
-			Seat Type:<input id="seat_type" name="seat_type" value="{{ seat_type }}"  readonly>
-			Payable Amount:<input id="amount" name="amount" value="{{ ticket_price }}"  readonly>
+    <h1>Booking Details</h1>
+    <div class="booking">
+        <form method="post" id='ticket_form' action="{% url 'payment_confirmation'  %}"  >
+            {% csrf_token %}
+            <input type="hidden" id="show_id" name="show_id" value="{{ show.id }}">
+            Movie:<input id="movie" name="movie" value="{{ show.movie }}" readonly>
+            Theatre:<input id="theatre" name="theatre" value="{{ show.theatre }}"  readonly>
+            Screen No:<input id="screen" name="screen" value="{{ show.screen }}"  readonly>
+            Showtime:<input id="showtime" name="showtime" value="{{ show.time }}"  readonly>
+            Date:<input id="date" name="date" value="{{ show.date }}"  readonly>
+            Seats:<input id="selected_seat" name="selected_seat" value="{{ seats }}"  readonly>
+            Seat Type:<input id="seat_type" name="seat_type" value="{{ seat_type }}"  readonly>
+            Payable Amount:<input id="amount" name="amount" value="{{ ticket_price }}"  readonly>
             {{ form|crispy }}
-			<button type="submit">Pay</button>
+            <button type="submit">Pay</button>
         </form>
-    
-			<!--<button type="submit">Pay</button>-->  
-		
-	</div>
+
+            <!--<button type="submit">Pay</button>-->
+
+    </div>
 
 {% endblock %}

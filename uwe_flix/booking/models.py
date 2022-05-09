@@ -82,9 +82,9 @@ class Booking(models.Model):
 class Seat(models.Model):
     seat_choice = (
         ('', 'Select'),
-        ('Silver', 'Silver'),
-        ('Gold', 'Gold'),
-        ('Platinum', 'Platinum'),
+        ('Regular', 'Regular'),
+        ('Deluxe', 'Deluxe'),
+        ('VIP', 'VIP'),
     )
     no = models.CharField(max_length=3,null=True,blank=False)
     seat_type = models.CharField(max_length=8, choices=seat_choice, blank=False)

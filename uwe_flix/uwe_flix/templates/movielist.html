@@ -51,11 +51,11 @@
 						<span>Year: <b>{{ movie.year }}</b></span>
 						<p class="rate"><i class="ion-android-star"></i><span>{{ movie.imdbRating }}</span> /10</p>
 						<p class="describe">{{ movie.plot }}</p>
-						<p class="run-time"> {{ movie.run_length }}   .     <span>{{ movie.rated }} </span>.</p>
+						<p class="run-time"> {{ movie.run_length }}   mins     <span>{{ movie.rated }} </span></p>
 						<p>Director: <a href="#">{{ movie.director }}</a></p>
 						<p>Stars: <a href="#">{{ movie.cast }}</a> </p>
 						<div class="row">
-							<button  style="background-color: turquoise; border: none; border-radius: 5px; color: #333; /* Dark grey */ padding: 15px 32px"><a href="{% url 'movie_details' movie.id %}" >BOOKING NOW</a></button>
+							<button  style="background-color: turquoise; border: none; border-radius: 5px; color: #333; /* Dark grey */ padding: 15px 32px"><a href="{% url 'movie_details' movie.id %}" >BOOK YOUR TICKETS NOW</a></button>
 					   </div>
 					</div>
 					

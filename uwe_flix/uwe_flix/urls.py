@@ -39,7 +39,7 @@ urlpatterns = [
     re_path(r'^booking/payment_confirmation/$', payment_confirmation, name='payment_confirmation'),
     re_path(r'^booking/payment/seatnotfound.html$', TemplateView.as_view(template_name="seatnotfound.html"), name='seatnotfound'),
     re_path(r'^booking/payment_confirmation/seatconflict.html$', TemplateView.as_view(template_name="seatconflict.html"), name='seatconflict'),
-    
+
    
 ]
 

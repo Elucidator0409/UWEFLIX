@@ -55,7 +55,7 @@
 						<span>Year: <b>{{ movie_info.year }}</b></span>
 						<p class="rate"><i class="ion-android-star"></i><span>{{ movie_info.imdbRating }}</span> /10</p>
 						<p class="describe">{{ movie_info.plot }}</p>
-						<p class="run-time"> {{ movie_info.run_length }}   .     <span>{{ movie_info.rated }} </span>.</p>
+						<p class="run-time"> {{ movie_info.run_length }}   mins     <span>{{ movie_info.rated }} </span></p>
 						<p>Director: <a href="#">{{ movie_info.director }}</a></p>
 						<p>Stars: <a href="#">{{ movie_info.cast }}</a> </p>
 					
@@ -77,7 +77,7 @@
             <h3 style="text-align:right;" >Now Showing</h3>
             
             <h6 style="text-align:right;"><a  >{{ movie_info.name }}</a></h6>
-            <p style="text-align:right;" class="run-time"> {{ movie_info.run_length }}   .     <span style="text-align:right;">{{ movie_info.rated }} </span>.</p>
+            <p style="text-align:right;" class="run-time"> {{ movie_info.run_length }}   mins     <span style="text-align:right;">{{ movie_info.rated }} </span></p>
             <h4 style="text-align:right;" ><a href="{% url 'home' %}">UWE FLIX </a></h4>
             {% for theatre in show_list %}
             <ul>

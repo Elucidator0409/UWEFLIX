@@ -144,4 +144,3 @@ def payment_confirmation(request):
 		return render(request, 'payment_confirmation.html', {'paid_amount':paid_amount})
     #else:
         #return redirect('dashboard.views.home')
-

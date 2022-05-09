@@ -11,8 +11,11 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+        <div class="header">
+          <img  style="display" inline;" src=img/name.jpg/>
     </head>
-    <body>
+    <body style="background-color:#4682B4">
+       <div style="margin:0 auto;text-align:center;">
        <h3> Welcome to UWEFLIX </h3>
        <form action="/signin" method="post">
         {% csrf_token %}
@@ -26,14 +29,14 @@
 
             <br>
 
-            
+
 
             <br><br><br>
 
             <button type="submit">Login</button>
             <button href="{% url 'signup'  %}">sign up</button>
         </form>
-        
+
         <script src="" async defer></script>
     </body>
 </html>
