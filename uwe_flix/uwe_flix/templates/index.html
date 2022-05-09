@@ -6,10 +6,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
+				
 				<br><br><br><br><br><br>
 				{% if user.is_authenticated %}
+				
 				<h3 style="color: red">Hello {{ username }}</h3>
 				<h4 style="color: red">You're succesfully logged in . </h4>
+				<img src="{% static 'media/name.jng' %}" />
 				<br>
 				<div class="row">
 					<button type="submit"  style="background-color: turquoise; border: none; border-radius: 5px; color: #333; /* Dark grey */ padding: 15px 32px"><a href="{% url 'signout'  %}" >SIGN OUT</a></button>

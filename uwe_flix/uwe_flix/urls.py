@@ -41,7 +41,7 @@ urlpatterns = [
     re_path(r'^booking/payment_confirmation/seatconflict.html$', TemplateView.as_view(template_name="seatconflict.html"), name='seatconflict'),
 
    
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
 	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #all values set in settings.py
