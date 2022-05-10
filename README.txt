@@ -1,11 +1,12 @@
 Terminal in order
 
+cd UWEFLIX-main
 cd uwe_flix
+activate venv
+pip install -r requirements.txt
 
 python manage.py makemigrations
 python manage.py migrate
-
-pip install -r requirements.txt
 
 create an admin account:
 python manage.py createsuperuser
